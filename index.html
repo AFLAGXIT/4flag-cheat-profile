@@ -183,13 +183,29 @@
             <!-- الهيدر الرئيسي -->
             <div class="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 w-full -mt-16 relative z-50 mb-6">
                 
-                <!-- الصورة الشخصية مع الإسم والإحصائيات -->
+                <!-- الصورة الشخصية مع الـ Status Note والإحصائيات -->
                 <div class="flex flex-col md:flex-row items-center md:items-end gap-5 text-center md:text-left w-full md:w-auto">
-                    <div class="shrink-0">
+                    
+                    <!-- الـ Avatar Container شاد بلاصتو في الجنب -->
+                    <div class="shrink-0 relative">
+                        <!-- الصورة الشخصية -->
                         <img src="JRRRR.webp" class="w-36 h-36 rounded-full border-4 border-[#030303] shadow-2xl object-cover bg-[#121212]" style="object-position: center 25%;">
+                        
+                        <!-- فقاعة الملاحظة (رجعات للجنب الأيمن وبلا أيقونة زائد) -->
+                        <div class="absolute left-full ml-3 top-4 bg-[#231f20] border border-[#2f2a2b] text-gray-200 text-[11px] font-medium px-3.5 py-1.5 rounded-2xl shadow-xl flex items-center select-none w-max max-w-[185px] md:max-w-[260px] leading-relaxed z-50">
+                            
+                            <!-- النص فقط (مرن وكينزل للسطر تلقائيا) -->
+                            <span class="italic whitespace-normal break-words text-gray-200">
+                                🫵 Live My Life as please, and you... watch from afar, maybe you'll learn something.
+                            </span>
+                            
+                            <!-- مثلث الفقاعة لاصق على الحافة اليسرى -->
+                            <div class="absolute left-[-5px] top-[11px] w-0 h-0 border-t-[5px] border-t-transparent border-r-[6px] border-r-[#231f20] border-b-[5px] border-b-transparent"></div>
+                        </div>
                     </div>
                     
-                    <div class="pb-1">
+                    <!-- معلومات الحساب -->
+                    <div class="pb-1 md:pl-16">
                         <h1 class="text-3xl font-bold text-white flex items-center justify-center md:justify-start gap-2 tracking-wide">
                             4flag Cheat
                             <span class="text-[#0095f6] text-xl" title="Verified Account"><i class="fas fa-check-circle"></i></span>
@@ -213,10 +229,10 @@
                 <!-- أزرار التحكم ومواقع التواصل -->
                 <div class="flex flex-wrap items-center justify-center md:justify-end gap-2 mt-4 md:mt-0">
                     <button id="followBtn" class="uniform-btn follow-active px-5 min-w-[100px]">Follow</button>
-                    <button class="uniform-btn px-5">Message</button>
+                    <button id="openMsgBtn" class="uniform-btn px-5">Message</button>
                     <button class="uniform-btn px-3"><i class="fas fa-chevron-down text-xs"></i></button>
                     
-                    <!-- أزرار مواقع التواصل الاجتماعي (مع تأثير Hover للـ GitHub) -->
+                    <!-- أزرار مواقع التواصل الاجتماعي -->
                     <div class="flex items-center gap-2 ml-1">
                         <a href="https://discord.gg/SQBaRzqU" class="social-btn-uniform hover:text-[#5865F2] hover:border-[#5865F2]" title="Discord"><i class="fab fa-discord text-base"></i></a>
                         <a href="https://github.com/Aflag-cheat" class="social-btn-uniform github-btn" title="GitHub"><i class="fab fa-github text-base"></i></a>
@@ -343,7 +359,59 @@
         </div>
     </div>
 
-    <!-- السكريبت -->
+    <!-- ==================== DISCORD MESSAGE MODAL ==================== -->
+    <div id="msgModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-[#111111] border border-[#1a1a1a] rounded-2xl max-w-md w-full mx-4 p-5 shadow-2xl relative transform scale-95 transition-transform duration-300 h-[280px] flex flex-col justify-between" id="modalContent">
+            
+            <!-- Top: Header -->
+            <div class="flex items-center justify-between shrink-0">
+                <h3 class="text-md font-bold text-white tracking-wide">Send Message</h3>
+                <button id="closeMsgBtn" class="text-gray-500 hover:text-white transition-colors text-sm">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Middle/Bottom Area -->
+            <div class="flex-1 flex flex-col justify-between mt-4">
+                
+                <!-- 1) Form View -->
+                <form id="webhookForm" class="flex-1 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <input type="text" id="msgSubject" placeholder="Subject (optional)" 
+                               class="w-full bg-[#0a0a0a] border border-[#1d1d1d] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors">
+                        <textarea id="msgBody" rows="3" placeholder="Write your message..." required
+                                  class="w-full bg-[#0a0a0a] border border-[#1d1d1d] rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-blue-500 transition-colors resize-none"></textarea>
+                    </div>
+
+                    <div class="flex items-center justify-end gap-2 pt-2 border-t border-[#161616]/50">
+                        <button type="button" id="cancelMsgBtn" 
+                                class="px-4 h-9 rounded-lg text-sm font-medium bg-[#1a1a1a] text-gray-300 hover:bg-[#242424] transition-colors">Cancel</button>
+                        <button type="submit" id="sendMsgBtn" 
+                                class="px-4 h-9 rounded-lg text-sm font-medium bg-[#0095f6] text-white hover:bg-[#0081e3] transition-colors flex items-center gap-2">
+                            <span>Send</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- 2) Success View -->
+                <div id="successView" class="hidden flex-1 flex flex-col justify-between">
+                    <div class="flex-1 flex items-center justify-center gap-3 text-blue-400 text-xl font-semibold -mt-2">
+                        <i class="fas fa-paper-plane animate-pulse"></i>
+                        <span class="text-gray-200 text-base tracking-wide">Message sent</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-end gap-2 pt-2 border-t border-[#161616]/50 opacity-40 pointer-events-none">
+                        <button class="px-4 h-9 rounded-lg text-sm font-medium bg-[#1a1a1a] text-gray-300">Cancel</button>
+                        <button class="px-4 h-9 rounded-lg text-sm font-medium bg-[#0095f6] text-white">Sent</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- ============================================================== -->
+
     <script>
         const audio = document.getElementById('myAudio');
         const playBtn = document.getElementById('playBtn');
@@ -393,7 +461,7 @@
         });
 
         // --- Logic d l-Odometer ---
-        let currentFollowers = 10486;
+        let currentFollowers = 10507;
         const container = document.getElementById('followersCount');
         const plusOneContainer = document.getElementById('plusOneContainer');
 
@@ -463,12 +531,100 @@
             }
         });
 
-        // Auto increment random counter
+        // Auto increment counter
         setInterval(() => {
             const randomAdd = Math.floor(Math.random() * 2) + 1; 
             currentFollowers += randomAdd;
             updateOdometer(currentFollowers, true, randomAdd);
         }, 4000);
+
+
+        // ==================== DISCORD MODAL LOGIC ====================
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1518666674666995854/zdJRmyBsn9GmGNTwCL-guMf6Nt7dHIiKCeJr6BNM57Yr-fNApsouKuR6dlJUFgqTVQ98';
+
+        const openMsgBtn = document.getElementById('openMsgBtn');
+        const msgModal = document.getElementById('msgModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeMsgBtn = document.getElementById('closeMsgBtn');
+        const cancelMsgBtn = document.getElementById('cancelMsgBtn');
+        const webhookForm = document.getElementById('webhookForm');
+        const sendMsgBtn = document.getElementById('sendMsgBtn');
+        const successView = document.getElementById('successView');
+
+        function openModal() {
+            webhookForm.classList.remove('hidden');
+            successView.classList.add('hidden');
+            msgModal.classList.remove('hidden');
+            setTimeout(() => {
+                msgModal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            msgModal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                msgModal.classList.add('hidden');
+                webhookForm.reset();
+                sendMsgBtn.disabled = false;
+                sendMsgBtn.innerHTML = '<span>Send</span>';
+            }, 300);
+        }
+
+        openMsgBtn.addEventListener('click', openModal);
+        closeMsgBtn.addEventListener('click', closeModal);
+        cancelMsgBtn.addEventListener('click', closeModal);
+
+        msgModal.addEventListener('click', (e) => {
+            if (e.target === msgModal) closeModal();
+        });
+
+        webhookForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const subject = document.getElementById('msgSubject').value.trim() || 'No Subject';
+            const body = document.getElementById('msgBody').value.trim();
+
+            if (!body) return;
+
+            sendMsgBtn.disabled = true;
+            sendMsgBtn.innerHTML = `<i class="fas fa-spinner animate-spin"></i> <span>Sending...</span>`;
+
+            const embedData = {
+                username: "4flag Profile Messenger",
+                avatar_url: "https://i.imgur.com/AfFp7pu.png",
+                embeds: [{
+                    title: `📩 New Message: ${subject}`,
+                    description: body,
+                    color: 38238, 
+                    timestamp: new Date().toISOString(),
+                    footer: { text: "Sent from 4flag Profile Website" }
+                }]
+            };
+
+            try {
+                const response = await fetch(DISCORD_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(embedData)
+                });
+
+                if (response.ok) {
+                    webhookForm.classList.add('hidden');
+                    successView.classList.remove('hidden');
+                    setTimeout(() => {
+                        closeModal();
+                    }, 2000);
+                } else {
+                    throw new Error('Failed to send');
+                }
+            } catch (error) {
+                alert('خطأ أثناء الإرسال، يرجى التحقق من رابط الـ Webhook.');
+                sendMsgBtn.disabled = false;
+                sendMsgBtn.innerHTML = '<span>Send</span>';
+            }
+        });
     </script>
 </body>
 </html>
