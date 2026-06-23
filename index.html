@@ -171,7 +171,6 @@
 
     <div class="max-w-5xl w-full profile-card relative">
         
-        <!-- البانر العلوي -->
         <div class="h-60 relative overflow-hidden bg-black rounded-t-2xl">
             <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-50">
                 <source src="banner.gif.webm" type="video/webm">
@@ -180,34 +179,19 @@
         
         <div class="px-4 pb-6 relative">
             
-            <!-- الهيدر الرئيسي -->
             <div class="flex flex-col md:flex-row items-center md:items-end justify-between gap-6 w-full -mt-16 relative z-50 mb-6">
                 
-                <!-- الصورة الشخصية مع الـ Status Note والإحصائيات -->
                 <div class="flex flex-col md:flex-row items-center md:items-end gap-5 text-center md:text-left w-full md:w-auto">
                     
-                    <!-- الـ Avatar Container شاد بلاصتو في الجنب -->
                     <div class="shrink-0 relative">
-                        <!-- الصورة الشخصية -->
                         <img src="JRRRR.webp" class="w-36 h-36 rounded-full border-4 border-[#030303] shadow-2xl object-cover bg-[#121212]" style="object-position: center 25%;">
                         
-                        <!-- فقاعة الملاحظة (رجعات للجنب الأيمن وبلا أيقونة زائد) -->
-                        <div class="absolute left-full ml-3 top-4 bg-[#231f20] border border-[#2f2a2b] text-gray-200 text-[11px] font-medium px-3.5 py-1.5 rounded-2xl shadow-xl flex items-center select-none w-max max-w-[185px] md:max-w-[260px] leading-relaxed z-50">
-                            
-                            <!-- النص فقط (مرن وكينزل للسطر تلقائيا) -->
-                            <span class="italic whitespace-normal break-words text-gray-200">
-                                🫵 Live My Life as please, and you... watch from afar, maybe you'll learn something.
-                            </span>
-                            
-                            <!-- مثلث الفقاعة لاصق على الحافة اليسرى -->
-                            <div class="absolute left-[-5px] top-[11px] w-0 h-0 border-t-[5px] border-t-transparent border-r-[6px] border-r-[#231f20] border-b-[5px] border-b-transparent"></div>
-                        </div>
+                        
                     </div>
                     
-                    <!-- معلومات الحساب -->
-                    <div class="pb-1 md:pl-16">
+                    <div class="pb-1">
                         <h1 class="text-3xl font-bold text-white flex items-center justify-center md:justify-start gap-2 tracking-wide">
-                            4flag Cheat
+                           4flag x cheat
                             <span class="text-[#0095f6] text-xl" title="Verified Account"><i class="fas fa-check-circle"></i></span>
                         </h1>
                         
@@ -226,13 +210,11 @@
                     </div>
                 </div>
                 
-                <!-- أزرار التحكم ومواقع التواصل -->
                 <div class="flex flex-wrap items-center justify-center md:justify-end gap-2 mt-4 md:mt-0">
                     <button id="followBtn" class="uniform-btn follow-active px-5 min-w-[100px]">Follow</button>
                     <button id="openMsgBtn" class="uniform-btn px-5">Message</button>
                     <button class="uniform-btn px-3"><i class="fas fa-chevron-down text-xs"></i></button>
                     
-                    <!-- أزرار مواقع التواصل الاجتماعي -->
                     <div class="flex items-center gap-2 ml-1">
                         <a href="https://discord.gg/SQBaRzqU" class="social-btn-uniform hover:text-[#5865F2] hover:border-[#5865F2]" title="Discord"><i class="fab fa-discord text-base"></i></a>
                         <a href="https://github.com/Aflag-cheat" class="social-btn-uniform github-btn" title="GitHub"><i class="fab fa-github text-base"></i></a>
@@ -244,10 +226,8 @@
 
             <div class="w-full h-[1px] bg-[#1a1a1a] mb-8"></div>
 
-            <!-- تقسيم المحتوى السفلي -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start">
                 
-                <!-- Badges اليسارية -->
                 <div class="md:col-span-1 flex flex-col gap-3 w-full">
                     <div class="badge-flat-left flex items-center gap-4">
                         <div class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0 text-sm"><i class="fas fa-code"></i></div>
@@ -272,21 +252,17 @@
                     </div>
                 </div>
 
-                <!-- الجزء الأيمن -->
                 <div class="md:col-span-3 flex flex-col lg:flex-row gap-6 items-start w-full">
                     
-                    <!-- مشغل الموسيقى -->
                     <div class="w-full lg:w-7/12 flex flex-col gap-3">
                         <div class="border-l-2 border-blue-500 pl-3">
                             <p class="text-white font-bold text-sm font-mono tracking-wide">@4flagcheats</p>
                             <p class="text-xs text-gray-400 font-medium mt-0.5">Developer • Security Researcher • Creator</p>
                         </div>
                         
-                        <!-- Music Player Box Component -->
                         <div class="audio-flat p-5 flex flex-col gap-5 w-full">
-                            <audio id="myAudio" src="music.mp3.mp3"></audio>
+                            <audio id="myAudio" src="music.mp3.mp3" autoplay loop muted preload="auto"></audio>
                             
-                            <!-- Top Layout -->
                             <div class="flex items-center gap-4">
                                 <img src="track-cover.png" alt="Music Cover" class="w-16 h-16 rounded-xl border border-[#1a1a1a] object-cover shrink-0 bg-black">
                                 <div class="min-w-0">
@@ -295,7 +271,6 @@
                                 </div>
                             </div>
                             
-                            <!-- Bottom Layout -->
                             <div class="flex items-center gap-4 w-full">
                                 <button id="playBtn" class="music-btn text-white shrink-0">
                                     <i class="fas fa-play text-xs ml-0.5" id="playIcon"></i>
@@ -316,7 +291,6 @@
                         </div>
                     </div>
 
-                    <!-- البيو -->
                     <div class="w-full lg:w-5/12">
                         <p class="text-[13px] text-gray-400 leading-relaxed text-justify font-normal pt-1">
                             Life doesn't have one universal meaning; each person creates it through what they love, pursue, and give to others. It may be found in family, in growing through hardships, or in doing what brings joy and helps people. Along the way, we learn to understand ourselves and value the present. In the end, the meaning of life lies in how we choose to live each day.
@@ -328,7 +302,6 @@
 
             <div class="w-full h-[1px] bg-[#1a1a1a] my-8"></div>
 
-            <!-- قسم Reflections -->
             <div>
                 <h2 class="text-xs font-bold flex items-center gap-2 mb-4 text-gray-400 uppercase tracking-wider">
                     <span class="text-blue-500 text-xs"><i class="fas fa-lightbulb"></i></span> Reflections
@@ -359,11 +332,9 @@
         </div>
     </div>
 
-    <!-- ==================== DISCORD MESSAGE MODAL ==================== -->
     <div id="msgModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
         <div class="bg-[#111111] border border-[#1a1a1a] rounded-2xl max-w-md w-full mx-4 p-5 shadow-2xl relative transform scale-95 transition-transform duration-300 h-[280px] flex flex-col justify-between" id="modalContent">
             
-            <!-- Top: Header -->
             <div class="flex items-center justify-between shrink-0">
                 <h3 class="text-md font-bold text-white tracking-wide">Send Message</h3>
                 <button id="closeMsgBtn" class="text-gray-500 hover:text-white transition-colors text-sm">
@@ -371,10 +342,8 @@
                 </button>
             </div>
 
-            <!-- Middle/Bottom Area -->
             <div class="flex-1 flex flex-col justify-between mt-4">
                 
-                <!-- 1) Form View -->
                 <form id="webhookForm" class="flex-1 flex flex-col justify-between space-y-4">
                     <div class="space-y-3">
                         <input type="text" id="msgSubject" placeholder="Subject (optional)" 
@@ -393,7 +362,6 @@
                     </div>
                 </form>
 
-                <!-- 2) Success View -->
                 <div id="successView" class="hidden flex-1 flex flex-col justify-between">
                     <div class="flex-1 flex items-center justify-center gap-3 text-blue-400 text-xl font-semibold -mt-2">
                         <i class="fas fa-paper-plane animate-pulse"></i>
@@ -410,8 +378,6 @@
 
         </div>
     </div>
-    <!-- ============================================================== -->
-
     <script>
         const audio = document.getElementById('myAudio');
         const playBtn = document.getElementById('playBtn');
@@ -425,8 +391,10 @@
 
         playBtn.addEventListener('click', () => {
             if (audio.paused) {
+                audio.muted = false;
                 audio.play();
                 playIcon.className = 'fas fa-pause text-xs';
+                muteIcon.className = 'fas fa-volume-up text-sm';
             } else {
                 audio.pause();
                 playIcon.className = 'fas fa-play text-xs ml-0.5';
@@ -447,7 +415,10 @@
             const width = progressContainer.clientWidth;
             const clickX = e.offsetX;
             const duration = audio.duration;
-            if(duration) audio.currentTime = (clickX / width) * duration;
+            if(duration) {
+                audio.muted = false;
+                audio.currentTime = (clickX / width) * duration;
+            }
         });
 
         muteBtn.addEventListener('click', () => {
@@ -624,6 +595,40 @@
                 sendMsgBtn.disabled = false;
                 sendMsgBtn.innerHTML = '<span>Send</span>';
             }
+        });
+
+        // ==================== AUTO-PLAY FORCED LOGIC ====================
+        // سكريبت متطور كيفرض الخدمة التلقائية والصوت بلا مشاكل
+        function forceAudioPlay() {
+            // محاولة تشغيل الصوت
+            audio.play().then(() => {
+                // يلا خدمات، كنطلقو الصوت نيشان (Unmute)
+                audio.muted = false;
+                playIcon.className = 'fas fa-pause text-xs';
+                muteIcon.className = 'fas fa-volume-up text-sm';
+                
+                // تنظيف الـ listeners باش مايتعاودش الكود
+                document.removeEventListener('click', forceAudioPlay);
+                document.removeEventListener('touchstart', forceAudioPlay);
+                document.removeEventListener('scroll', forceAudioPlay);
+            }).catch(error => {
+                console.log("Autoplay context loading... waiting for interaction.");
+            });
+        }
+
+        // تشغيل فوري مع فتح الصفحة
+        window.addEventListener('DOMContentLoaded', () => {
+            forceAudioPlay();
+            
+            // احتياطاً للمتصفحات الصارمة: أي تفاعل خفيف (كليك، لمس، سكرول) يطلق الصوت فالبلاصة
+            document.addEventListener('click', forceAudioPlay);
+            document.addEventListener('touchstart', forceAudioPlay);
+            document.addEventListener('scroll', forceAudioPlay);
+        });
+
+        // فاش تسالي الموسيقى وتعاود لراسها (Loop)، نأكدو أن الأيقونة والصوت يبقاو شغالين
+        audio.addEventListener('play', () => {
+            playIcon.className = 'fas fa-pause text-xs';
         });
     </script>
 </body>
